@@ -20,6 +20,20 @@ def encode(org_password):  # Encryption : Add 3 for each digit and concatenate e
 
     return str_encoded_pass
 
+def decode(password):  # Decryption
+    decode_pass = ""
+
+    for i in password:
+        digit = int(i) - 3 # Subtracts 3 for each digit
+
+        # Accounts for digits 7-9
+        if digit < 0:
+            digit += 10
+
+        decode_pass += str(digit)[-1]
+
+    return decode_pass
+
 
 def main():
 
@@ -41,7 +55,8 @@ def main():
             print("Your password has been encoded and stored!")
             print()
         elif var_menu_sel == 2:
-            pass
+            var_decoded_pass = decode(var_encoded_pass)
+            print(f"The encoded password is {var_encoded_pass}, and the original password is {var_decoded_pass}.")
         elif var_menu_sel == 3:
             break
 
